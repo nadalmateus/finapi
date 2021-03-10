@@ -12,7 +12,7 @@ app.post('/account', (request, response) => {
   const { cpf, name } = request.body;
 
   const customerAlreadyExists = customers.some(
-    custumer => custumer.cpf === cpf,
+    customer => customer.cpf === cpf,
   );
 
   if (customerAlreadyExists) {
@@ -28,12 +28,16 @@ app.post('/account', (request, response) => {
   return response.status(201).send();
 });
 
-app.get('/statement/:cpf', (request, response) => {
-  const { cpf } = request.params;
+app.get('/statement', (request, response) => {
+  const { cpf } = request.headers;
 
-  const custumer = customers.find(customer => customer.cpf === cpf);
+  const customerValidation = customers.find(customer => customer.cpf === cpf);
 
-  return response.json(custumer.statement);
+  if (!customerValidation) {
+    return response.status(400).json({ error: 'Customer not found!' });
+  }
+
+  return response.json(customerValidation.statement);
 });
 
 app.listen(3333);
