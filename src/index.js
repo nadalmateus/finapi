@@ -55,7 +55,6 @@ app.post('/account', (request, response) => {
   return response.status(201).send();
 });
 
-
 app.get('/statement', verifyIfExistsAccountCPF, (request, response) => {
 
   const { customer } = request;
@@ -63,9 +62,8 @@ app.get('/statement', verifyIfExistsAccountCPF, (request, response) => {
   return response.json(customer.statement);
 });
 
-
 app.post('/withdraw', verifyIfExistsAccountCPF, (request, response) => {
-  
+
   const { amount } = request.body;
   const { customer } = request;
 
@@ -103,7 +101,6 @@ app.get('/statement/date', verifyIfExistsAccountCPF, (request, response) => {
   return response.json(statement);
 });
 
-
 app.put("/account", verifyIfExistsAccountCPF, (request, response) => {
 
   const { name } = request.body;
@@ -116,11 +113,28 @@ app.put("/account", verifyIfExistsAccountCPF, (request, response) => {
 
 });
 
-app.get("/account",verifyIfExistsAccountCPF, (request, response) => {
+app.get("/account", verifyIfExistsAccountCPF, (request, response) => {
 
   const { customer } = request;
 
   return response.json(customer)
 })
 
+app.delete("/account", verifyIfExistsAccountCPF, (request, response) => {
+  const { customer } = request;
+
+  costumers.splice(customer, 1)
+
+  return response.status(200).json(costumers)
+})
+
+app.get("/balance", verifyIfExistsAccountCPF, (request, response) => {
+
+  const { customer } = request;
+
+  const balance = getBalance(customer.statement);
+
+  return response.json(balance);
+
+})
 app.listen(3333);
