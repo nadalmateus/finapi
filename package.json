@@ -1,34 +1,41 @@
 {
-  "name": "finapi",
+  "name": "ignite-serveless-challenge",
   "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/nadalmateus/finapi.git",
-  "author": "Mateus Nadal <nadalmateus@outlook.com>",
-  "license": "MIT",
+  "description": "Serverless Ignite Challenge",
   "scripts": {
-    "dev": "nodemon src/index.js"
+    "dev": "npx sls offline",
+    "deploy": "npx sls deploy",
+    "dynamo:install": "npx sls dynamodb install",
+    "dynamo:start": "npx sls dynamodb start"
   },
-  "dependencies": {
-    "express": "^4.17.1",
-    "uuid": "^8.3.2"
+  "engines": {
+    "node": ">=14.15.0"
   },
   "devDependencies": {
-    "cz-conventional-changelog": "3.3.0",
-    "eslint": "^7.26.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-config-prettier-standard": "^4.0.1",
-    "eslint-config-standard": "^16.0.2",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-promise": "^4.3.1",
-    "nodemon": "^2.0.7",
-    "prettier": "2.2.1",
-    "prettier-config-standard": "^4.0.0"
+    "@serverless/typescript": "^2.23.0",
+    "@types/aws-lambda": "^8.10.71",
+    "@types/aws-sdk": "^2.7.0",
+    "@types/node": "^14.14.25",
+    "@types/uuid": "^8.3.0",
+    "json-schema-to-ts": "^1.5.0",
+    "serverless": "^2.23.0",
+    "serverless-dotenv-plugin": "^3.9.0",
+    "serverless-dynamodb-local": "^0.2.39",
+    "serverless-offline": "^7.0.0",
+    "serverless-webpack": "^5.3.5",
+    "ts-loader": "^8.0.15",
+    "ts-node": "^9.1.1",
+    "tsconfig-paths": "^3.9.0",
+    "tsconfig-paths-webpack-plugin": "^3.3.0",
+    "typescript": "^4.1.3",
+    "webpack": "^5.20.2",
+    "webpack-node-externals": "^2.5.2"
   },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
+  "author": "Marcos Vinicius Corsi",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.907.0",
+    "joi": "^17.4.0",
+    "uuid": "^8.3.2"
   }
 }
